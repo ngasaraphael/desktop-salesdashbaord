@@ -1,0 +1,42 @@
+.widgets {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 20px;
+}
+
+.widget {
+  width: 280px;
+  height: 280px;
+  color: #182c61;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: 8px;
+  border: 1px solid rgb(245, 245, 245);
+  box-shadow: 0 6px 20px rgba(4, 53, 146, 0.17);
+}
+
+.widgets .costPrice {
+  margin: 20px 0;
+}
+
+.widgets p i {
+  color: rgb(10, 116, 0);
+  margin-left: 6px;
+}
+
+.widgetTitle {
+  margin-top: -40px;
+}
+
+.barChartTitle {
+  margin: 20px;
+  padding-top: 16px;
+}
+
+/* CHART */
