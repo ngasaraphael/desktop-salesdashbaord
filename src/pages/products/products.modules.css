@@ -1,0 +1,70 @@
+/* TABLE */
+
+.products {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.table {
+  margin: 0 auto;
+  width: 98%;
+}
+.tableHead {
+  background-color: #182c61 !important;
+  color: white;
+}
+
+.productTitle {
+  text-align: center;
+}
+.searchBar {
+  /* text-align: center;
+  margin-top: -10px; */
+  width: 98%;
+  margin: auto;
+  display: flex;
+}
+.searchItemInput {
+  margin-bottom: 6px;
+  width: 100%;
+  padding-left: 8px;
+  height: 48px;
+  border: none;
+  background-color: #e7edfc;
+  border-radius: 4px;
+}
+.searchBar button {
+  width: 110px;
+  border-radius: 4px;
+  margin-left: 8px;
+  border: none;
+  height: 48px;
+  background-color: #182c61;
+  color: white;
+}
+
+.searchItemInput:focus {
+  outline: none;
+}
+
+.table > :not(:first-child) {
+  border-top: none;
+}
+
+.editItemIcon {
+  margin: 0 10px;
+  color: #2e65fd;
+  border: none;
+}
+
+.deleteBtn {
+  margin: 0 10px;
+  color: rgb(218, 30, 124);
+  border: none;
+}
+
+.table h3 {
+  margin: 40px 0;
+  color: #182c61;
+}

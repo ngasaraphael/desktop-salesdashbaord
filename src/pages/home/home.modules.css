@@ -1,0 +1,35 @@
+.home {
+  flex: 99;
+}
+
+.salesTitle,
+.chartTitle,
+.salesTableTitle {
+  margin: 80px 0 50px 0;
+  color: #182c61;
+  text-align: center;
+}
+
+.chart {
+  width: 96%;
+  margin: auto;
+  margin-bottom: 60px;
+}
+
+.chartTitle {
+  color: #182c61;
+  margin: 80px 0 30px 0;
+}
+
+/* salesTable */
+.salesTable {
+  width: 100%;
+  margin: auto;
+  text-align: center;
+}
+
+@media (max-width: 740px) {
+  .salesTable {
+    width: 98%;
+  }
+}

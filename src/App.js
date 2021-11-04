@@ -1,25 +1,80 @@
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
+import SideBar from './components/sidebar/SideBar';
+import Home from './pages/home/Home';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import NewUser from './pages/newuser/NewUser';
+import Login from './pages/login/Login';
+import AddItem from './pages/addItem/AddItem';
+import Register from './pages/register/Register';
+import Products from './pages/products/Products';
+import Footer from './components/footer/Footer';
+import User from './pages/user/User';
+import EditItem from './pages/editItem/EditItem';
+import ScrollToTop from './ScrollToTop';
 
-function App() {
+const App = () => {
+  const [user, setUser] = useState('');
+
+  useEffect(() => {
+    let user = localStorage.getItem('user');
+    setUser(user);
+
+    // window.open('/', '_self');
+    //window.location.reload();
+  }, []);
+
+  const LoggedIn = (authData) => {
+    localStorage.setItem('token', authData.token);
+    localStorage.setItem('user', authData.user);
+    console.log(localStorage);
+  };
+
+  if (!user) {
+    return (
+      <Router>
+        <Switch>
+          <Route exact path='/'>
+            <Login LoggedIn={LoggedIn} />
+          </Route>
+          <Route path='/register'>
+            <Register />
+          </Route>
+        </Switch>
+      </Router>
+    );
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <ScrollToTop /> {/* loads page from the top */}
+      <div className='App'>
+        <SideBar />
+        <Switch>
+          <Route exact path='/'>
+            <Home />
+          </Route>
+          <Route path='/products'>
+            <Products />
+          </Route>
+          <Route path='/additem'>
+            <AddItem />
+          </Route>
+          <Route path='/user'>
+            <User />
+          </Route>
+          <Route path='/newuser'>
+            <NewUser />
+          </Route>
+          <Route path='/edititem'>
+            <EditItem />
+          </Route>
+        </Switch>
+      </div>
+      <Footer />
+    </Router>
   );
-}
+};
 
 export default App;
