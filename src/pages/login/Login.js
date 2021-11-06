@@ -4,11 +4,13 @@ import './login.css';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { ErrorAlert } from '../../components/alert/Alert';
+import Loading from '../../components/loading/Loading';
 
 const Login = (props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorText, setErrorText] = useState('');
+  const [loading, setLoading] = useState(false);
 
   //hide error message after 5s
   if (errorText) {
@@ -34,11 +36,14 @@ const Login = (props) => {
       return false;
     }
 
+    setLoading(true);
+
     axios
       .post('https://sales-dashboard-server.herokuapp.com/user/login', {
         email: email,
         password: password,
       })
+
       .then((res) => {
         const userInfo = res.data;
         const token = userInfo.token;
@@ -52,6 +57,7 @@ const Login = (props) => {
         if (password.length > 1 && email.length > 1) {
           setErrorText('Incorrect email or password');
         }
+        setLoading(false);
       });
   };
 
@@ -61,43 +67,48 @@ const Login = (props) => {
 
   return (
     <Router>
-      <div className='formContainer'>
-        {errorText && <ErrorAlert text={errorText} />}
-        <form className='form'>
-          <h3>Pro Team</h3>
-          <div className='formGroup'>
-            <label htmlFor='email'>Email</label>
-            <input
-              id='email'
-              type='email'
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </div>
-          <div className='formGroup'>
-            <label htmlFor='password'>Password</label>
-            <input
-              id='password'
-              type='password'
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
-          <div className='formBtns'>
-            <input
-              type='submit'
-              value='Login'
-              onClick={handleSubmit}
-              className='formInputBtn'
-            />
-            <Link to='/register'>
-              <button className='registerBtn' onClick={handleRegister}>
-                Register
-              </button>
-            </Link>
-          </div>
-        </form>
-      </div>
+      {loading ? (
+        <Loading />
+      ) : (
+        <div className='formContainer'>
+          {errorText && <ErrorAlert text={errorText} />}
+
+          <form className='form'>
+            <h3>Pro Team</h3>
+            <div className='formGroup'>
+              <label htmlFor='email'>Email</label>
+              <input
+                id='email'
+                type='email'
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            <div className='formGroup'>
+              <label htmlFor='password'>Password</label>
+              <input
+                id='password'
+                type='password'
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+            <div className='formBtns'>
+              <input
+                type='submit'
+                value='Login'
+                onClick={handleSubmit}
+                className='formInputBtn'
+              />
+              <Link to='/register'>
+                <button className='registerBtn' onClick={handleRegister}>
+                  Register
+                </button>
+              </Link>
+            </div>
+          </form>
+        </div>
+      )}
     </Router>
   );
 };

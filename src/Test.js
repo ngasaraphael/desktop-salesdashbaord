@@ -20,6 +20,7 @@ const Products = () => {
       );
 
       const items = res.data;
+      // 1) get tableData
       setTableData(items);
     }
     getData();
@@ -32,7 +33,8 @@ const Products = () => {
     // setTableData(newData);
 
     //// this will delete just from database
-    let id = currentRow._id;
+    let selectedTableRow = currentRow;
+    let id = selectedTableRow._id;
 
     axios
       .delete(`https://sales-dashboard-server.herokuapp.com/item/${id}`)
@@ -56,6 +58,7 @@ const Products = () => {
           onClick={() => {
             handleUpdate(i);
           }}
+          to='/'
           className='editItemIcon'
         >
           <i className='fas fa-edit'></i>
@@ -74,9 +77,26 @@ const Products = () => {
     </tr>
   );
 
+  //To filter data from searchterm
+  const searchFilter = (name, description) => {
+    return (
+      name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      description.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  };
+
+  // 2) filter tableData
+  const filtteredTableData = () => {
+    if (!searchFilter) return tableData;
+    return tableData.filter((value) =>
+      searchFilter(value.name, value.description)
+    );
+  };
+
   const handleUpdate = (i) => {
-    let currentRow = tableData[i];
-    localStorage.setItem('item', JSON.stringify(currentRow));
+    let selectedTableRow = tableData[i];
+    // let id = selectedTableRow._id;
+    localStorage.setItem('item', JSON.stringify(selectedTableRow));
     window.open('/edititem', '_self');
   };
 
@@ -112,20 +132,7 @@ const Products = () => {
             </tr>
           </thead>
           <tbody>
-            {tableData
-              .filter((value) => {
-                if (searchTerm === '') {
-                  return value;
-                } else if (
-                  value.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                  value.description
-                    .toLowerCase()
-                    .includes(searchTerm.toLowerCase())
-                ) {
-                  return value;
-                }
-              })
-              .map((data, i) => renderRow(data, i))}
+            {filtteredTableData().map((data, i) => renderRow(data, i))}
           </tbody>
         </Table>
       </div>
