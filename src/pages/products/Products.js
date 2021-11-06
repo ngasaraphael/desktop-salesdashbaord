@@ -13,7 +13,7 @@ const Products = () => {
   const [currentRow, setCurrentRow] = useState(null);
 
   useEffect(() => {
-    // table data
+    // 1) setTable data
     async function getData() {
       const res = await axios.get(
         'https://sales-dashboard-server.herokuapp.com/item/get'
@@ -33,7 +33,6 @@ const Products = () => {
 
     //// this will delete just from database
     let id = currentRow._id;
-
     axios
       .delete(`https://sales-dashboard-server.herokuapp.com/item/${id}`)
       .then((res) => {
@@ -56,6 +55,7 @@ const Products = () => {
           onClick={() => {
             handleUpdate(i);
           }}
+          to='/'
           className='editItemIcon'
         >
           <i className='fas fa-edit'></i>
@@ -73,6 +73,22 @@ const Products = () => {
       </td>
     </tr>
   );
+
+  //filter function to filter data from searchterm
+  const searchFilter = (name, description) => {
+    return (
+      name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      description.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  };
+
+  // 2) filter tableData
+  const filtteredTableData = () => {
+    if (!searchFilter) return tableData;
+    return tableData.filter((value) =>
+      searchFilter(value.name, value.description)
+    );
+  };
 
   const handleUpdate = (i) => {
     let currentRow = tableData[i];
@@ -112,20 +128,7 @@ const Products = () => {
             </tr>
           </thead>
           <tbody>
-            {tableData
-              .filter((value) => {
-                if (searchTerm === '') {
-                  return value;
-                } else if (
-                  value.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                  value.description
-                    .toLowerCase()
-                    .includes(searchTerm.toLowerCase())
-                ) {
-                  return value;
-                }
-              })
-              .map((data, i) => renderRow(data, i))}
+            {filtteredTableData().map((data, i) => renderRow(data, i))}
           </tbody>
         </Table>
       </div>
