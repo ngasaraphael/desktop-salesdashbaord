@@ -64,6 +64,11 @@
   border: none;
 }
 
+.deleteBtn:focus,
+.editItemIcon:focus {
+  outline: none;
+}
+
 .table h3 {
   margin: 40px 0;
   color: #182c61;

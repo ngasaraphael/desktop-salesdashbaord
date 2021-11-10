@@ -1,11 +1,29 @@
 import React from 'react';
 import './deletemodal.modules.css';
 
-const Modal = ({ setOpenModal, confirmAction }) => {
-  const onDeleteClick = () => {
+const Modal = ({ setOpenModal, confirmAction, title }) => {
+  const onConfirm = () => {
     confirmAction();
     setOpenModal(false);
   };
+
+  if (!title) {
+    title = 'Confirm Action';
+  }
+
+  //Close modal with escape key
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      setOpenModal(false);
+    }
+  });
+
+  //Close modal onClick of modalBackground
+  window.addEventListener('click', (e) => {
+    if (e.target.classList.contains('modalBackground')) {
+      setOpenModal(false);
+    }
+  });
 
   return (
     <div className='modalBackground'>
@@ -21,7 +39,7 @@ const Modal = ({ setOpenModal, confirmAction }) => {
           </button>
         </div>
         <div className='modal-title'>
-          <h3>Confirm Delete</h3>
+          <h3>{title}</h3>
         </div>
         <div className='modal-body'>
           <small>
@@ -38,7 +56,7 @@ const Modal = ({ setOpenModal, confirmAction }) => {
           >
             Cancel
           </button>
-          <button onClick={onDeleteClick}>Delete</button>
+          <button onClick={onConfirm}>Confirm</button>
         </div>
       </div>
     </div>

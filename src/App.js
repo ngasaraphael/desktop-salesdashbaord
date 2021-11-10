@@ -61,12 +61,6 @@ const App = () => {
           <Route path='/additem'>
             <AddItem />
           </Route>
-          <Route path='/user'>
-            <User />
-          </Route>
-          <Route path='/newuser'>
-            <NewUser />
-          </Route>
           <Route path='/edititem'>
             <EditItem />
           </Route>

@@ -28,14 +28,6 @@ const SideBar = () => {
           <i className='fas fa-plus'></i>
           <span className='linkName'>Add Item</span>
         </Link>
-        <Link to='/user' className='sidebarLink'>
-          <i className='fas fa-user'></i>
-          <span className='linkName'>User</span>
-        </Link>
-        <Link to='/newuser' className='sidebarLink'>
-          <i className='fas fa-user-plus'></i>
-          <span className='linkName'>New User</span>
-        </Link>
 
         <button onClick={handleLogOut} className='logOutBtn'>
           <i className='fas fa-sign-out-alt'></i>

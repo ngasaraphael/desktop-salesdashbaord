@@ -63,7 +63,6 @@ const Products = () => {
         <button
           className='deleteBtn'
           onClick={() => {
-            // handleDelete(i);
             setOpenModal(true);
             setCurrentRow(data);
           }}
@@ -133,7 +132,11 @@ const Products = () => {
         </Table>
       </div>
       {openModal && (
-        <DeleteModal setOpenModal={setOpenModal} confirmAction={handleDelete} />
+        <DeleteModal
+          setOpenModal={setOpenModal}
+          confirmAction={handleDelete}
+          title='Confirm Delete'
+        />
       )}
     </div>
   );
