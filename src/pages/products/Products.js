@@ -16,7 +16,7 @@ const Products = () => {
     // 1) setTable data
     async function getData() {
       const res = await axios.get(
-        'https://sales-dashboard-server.herokuapp.com/item/get'
+        'https://salesdashboard-server.herokuapp.com/item/get'
       );
 
       const items = res.data;
@@ -34,7 +34,7 @@ const Products = () => {
     //// this will delete just from database
     let id = currentRow._id;
     axios
-      .delete(`https://sales-dashboard-server.herokuapp.com/item/${id}`)
+      .delete(`https://salesdashboard-server.herokuapp.com/item/${id}`)
       .then((res) => {
         window.location.reload();
       })

@@ -36,7 +36,7 @@ const Register = () => {
     }
 
     axios
-      .post('https://sales-dashboard-server.herokuapp.com/user/register', {
+      .post('https://salesdashboard-server.herokuapp.com/user/register', {
         name: name,
         email: email,
         password: password,

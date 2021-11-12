@@ -1,18 +1,17 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './editItem.modules.css';
+import './editProfit.modules.css';
 import { InfoAlert } from '../../components/alert/Alert';
 
-const EditItem = () => {
+const EditProfit = () => {
   //get id of item to be updated from local storage
-  let item = JSON.parse(localStorage.getItem('item'));
+  let item = JSON.parse(localStorage.getItem('monthprofit'));
   console.log(item);
-
   let id = item._id;
-  const [name, setName] = useState(item.name);
-  const [description, setDescription] = useState(item.description);
+  const [month, setMonth] = useState(item.month);
   const [costprice, setCostprice] = useState(item.costprice);
-  const [sellingprice, setSellingprice] = useState(item.sellingprice);
+  const [salesprice, setSalesprice] = useState(item.salesprice);
+  const [profit, setProfit] = useState(item.profit);
   const [alertText, setAlertText] = useState('');
 
   //hide error message after 5s
@@ -22,28 +21,23 @@ const EditItem = () => {
     }, 4500);
   }
 
-  const handleEditItem = (e) => {
+  const updateProfit = (e) => {
     e.preventDefault();
 
-    if (
-      name === '' ||
-      description === '' ||
-      costprice === '' ||
-      sellingprice === ''
-    ) {
-      setAlertText('Enter all input fields');
+    if (month === '' || costprice === '' || salesprice === '') {
+      setAlertText('Please select an item from products tap to update');
       return false;
     }
 
     axios
       .patch(
-        `https://salesdashboard-server.herokuapp.com/item/${id}`,
+        `https://salesdashboard-server.herokuapp.com/chart/${id}`,
 
         {
-          name: name,
-          description: description,
+          month: month,
           costprice: costprice,
-          sellingprice: sellingprice,
+          salesprice: salesprice,
+          profit: profit,
         }
       )
       .then((response) => {
@@ -52,10 +46,10 @@ const EditItem = () => {
 
         // window.open('/products', '_self');
         setAlertText('Item has been Updated to list');
-        setName('');
-        setDescription('');
-        setSellingprice('');
+        setMonth('');
+        setSalesprice('');
         setCostprice('');
+        setProfit('');
       })
       .catch((e) => {
         console.log('error while updating item');
@@ -72,27 +66,18 @@ const EditItem = () => {
           </div>
           <h3 className='addItemTitle'>Update Item</h3>
           <div className='formGroup'>
-            <label htmlFor='item'>Item</label>
+            <label htmlFor='item'>Month</label>
             <input
-              id='item'
-              type='item'
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              id='month'
+              type='text'
+              value={month}
+              onChange={(e) => setMonth(e.target.value)}
             />
           </div>
-          <div className='formGroup'>
-            <label htmlFor='description'>Item description</label>
-            <input
-              id='description'
-              type='description'
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-            />
-          </div>
+
           <div className='formGroup'>
             <label htmlFor='costprice'>Cost price</label>
             <input
-              id='costprice'
               type='number'
               value={costprice}
               onChange={(e) => setCostprice(e.target.value)}
@@ -101,17 +86,24 @@ const EditItem = () => {
           <div className='formGroup'>
             <label htmlFor='sellingprice'>Sales price</label>
             <input
-              id='sellingprice'
               type='number'
-              value={sellingprice}
-              onChange={(e) => setSellingprice(e.target.value)}
+              value={salesprice}
+              onChange={(e) => setSalesprice(e.target.value)}
+            />
+          </div>
+          <div className='formGroup'>
+            <label htmlFor='profit'>Profit</label>
+            <input
+              type='number'
+              value={profit}
+              onChange={(e) => setProfit(e.target.value)}
             />
           </div>
           <div className='formBtns'>
             <input
               type='submit'
               value='Update Item'
-              onClick={handleEditItem}
+              onClick={updateProfit}
               className='formInputBtn'
             />
           </div>
@@ -121,4 +113,4 @@ const EditItem = () => {
   );
 };
 
-export default EditItem;
+export default EditProfit;

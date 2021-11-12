@@ -28,18 +28,30 @@ const Home = () => {
     setChartData(res);
   };
 
+  const handleEdit = (i) => {
+    let currentRow = chartData[i];
+    localStorage.setItem('monthprofit', JSON.stringify(currentRow));
+    window.open('/editprofit', '_self');
+  };
+
   const renderChatData = () => {
     return chartData.map((data, i) => (
       <tr key={i}>
         <th scope='row'>{i}</th>
-        <td>{data.Month}</td>
-        <td>{data.Costprice}</td>
-        <td>{data.Salesprice}</td>
-        <td>{data.Profit}</td>
+        <td>{data.month}</td>
+        <td>{data.costprice}</td>
+        <td>{data.salesprice}</td>
+        <td>{data.profit}</td>
         <td>
-          <Link to='/' className='editItemIcon'>
+          <button
+            onClick={() => {
+              handleEdit(i);
+            }}
+            to='/'
+            className='editItemIcon'
+          >
             <i className='fas fa-edit'></i>
-          </Link>
+          </button>
         </td>
       </tr>
     ));
@@ -51,11 +63,11 @@ const Home = () => {
       {/* Chart */}
       <div className='chart'>
         <h3 className='chartTitle'>Monthly Pofits Chart ($)</h3>
-        <ResponsiveContainer width='100%' aspect={4 / 1}>
+        <ResponsiveContainer width='100%' aspect={5 / 2}>
           <LineChart data={chartData}>
-            <XAxis dataKey='Month' stroke='#5550bd' />
-            <YAxis dataKey='Profit' stroke='#5550bd' />
-            <Line type='monotone' dataKey='Profit' stroke='#5550bd' />
+            <XAxis dataKey='month' stroke='#5550bd' />
+            <YAxis dataKey='profit' stroke='#5550bd' />
+            <Line type='monotone' dataKey='profit' stroke='#5550bd' />
             <Tooltip />
             <CartesianGrid stroke='#edeff2' />
           </LineChart>

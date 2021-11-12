@@ -13,8 +13,10 @@ const Widget = () => {
     // card and monthly data
     async function getData() {
       const res = await axios.get(
-        'https://sales-dashboard-server.herokuapp.com/item/get'
+        'https://salesdashboard-server.herokuapp.com/item/get'
       );
+
+      console.log(res.data);
 
       const items = res.data;
       if (items.length === 0) {

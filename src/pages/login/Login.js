@@ -39,7 +39,7 @@ const Login = (props) => {
     setLoading(true);
 
     axios
-      .post('https://sales-dashboard-server.herokuapp.com/user/login', {
+      .post('https://salesdashboard-server.herokuapp.com/user/login', {
         email: email,
         password: password,
       })

@@ -4,15 +4,14 @@ import './App.css';
 import SideBar from './components/sidebar/SideBar';
 import Home from './pages/home/Home';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import NewUser from './pages/newuser/NewUser';
 import Login from './pages/login/Login';
 import AddItem from './pages/addItem/AddItem';
 import Register from './pages/register/Register';
 import Products from './pages/products/Products';
 import Footer from './components/footer/Footer';
-import User from './pages/user/User';
 import EditItem from './pages/editItem/EditItem';
 import ScrollToTop from './ScrollToTop';
+import EditProfit from './pages/editprofit/EditProfit';
 
 const App = () => {
   const [user, setUser] = useState('');
@@ -63,6 +62,9 @@ const App = () => {
           </Route>
           <Route path='/edititem'>
             <EditItem />
+          </Route>
+          <Route path='/editprofit'>
+            <EditProfit />
           </Route>
         </Switch>
       </div>

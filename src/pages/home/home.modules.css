@@ -23,13 +23,7 @@
 
 /* salesTable */
 .salesTable {
-  width: 100%;
+  width: 98%;
   margin: auto;
   text-align: center;
-}
-
-@media (max-width: 740px) {
-  .salesTable {
-    width: 98%;
-  }
 }

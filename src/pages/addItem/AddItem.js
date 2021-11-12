@@ -32,7 +32,7 @@ const AddItem = () => {
 
     axios
       .post(
-        'https://sales-dashboard-server.herokuapp.com/item',
+        'https://salesdashboard-server.herokuapp.com/item',
 
         {
           name: name,
