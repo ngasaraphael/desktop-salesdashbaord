@@ -37,8 +37,9 @@
   border: none;
   font-weight: bold;
   color: crimson;
-  font-size: 25px;
+  font-size: 24px;
   cursor: pointer;
+  margin-top: -12px;
 }
 
 .modalContainer .modal-body {
@@ -62,14 +63,13 @@
 }
 
 .modalContainer .modal-footer button {
-  width: 100px;
-  height: 40px;
+  width: 90px;
+  height: 30px;
   margin: 10px;
   border: none;
   background-color: #182c61;
   color: white;
   border-radius: 4px;
-  font-size: 20px;
   cursor: pointer;
 }
 

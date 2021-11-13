@@ -35,17 +35,14 @@ const Modal = ({ setOpenModal, confirmAction, title }) => {
               setOpenModal(false);
             }}
           >
-            X
+            x
           </button>
         </div>
         <div className='modal-title'>
-          <h3>{title}</h3>
+          <h4>{title}</h4>
         </div>
         <div className='modal-body'>
-          <small>
-            Are you sure you want to delete Item. This action can not be
-            reversed
-          </small>
+          <small>This action can not be reversed</small>
         </div>
         <div className='modal-footer'>
           <button

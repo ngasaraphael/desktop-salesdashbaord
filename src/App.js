@@ -12,6 +12,7 @@ import Footer from './components/footer/Footer';
 import EditItem from './pages/editItem/EditItem';
 import ScrollToTop from './ScrollToTop';
 import EditProfit from './pages/editprofit/EditProfit';
+import Users from './pages/users/Users';
 
 const App = () => {
   const [user, setUser] = useState('');
