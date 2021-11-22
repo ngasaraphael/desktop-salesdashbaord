@@ -16,8 +16,6 @@ const Widget = () => {
         'https://salesdashboard-server.herokuapp.com/item/get'
       );
 
-      console.log(res.data);
-
       const items = res.data;
       if (items.length === 0) {
         return null;

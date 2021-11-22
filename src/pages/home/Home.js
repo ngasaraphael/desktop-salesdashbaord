@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Widget from '../../components/widgets/Widget';
 import './home.modules.css';
 import { Table } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 import {
   LineChart,
   Line,

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './login.css';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import { ErrorAlert } from '../../components/alert/Alert';
 import Loading from '../../components/loading/Loading';
 
@@ -113,12 +112,12 @@ const Login = (props) => {
   );
 };
 
-Login.propTypes = {
-  user: PropTypes.shape({
-    email: PropTypes.string.isRequired,
-    password: PropTypes.string.isRequired,
-  }),
-  LoggedIn: PropTypes.string.isRequired,
-};
+// Login.propTypes = {
+//   user: PropTypes.shape({
+//     email: PropTypes.string.isRequired,
+//     password: PropTypes.string.isRequired,
+//   }),
+//   LoggedIn: PropTypes.string.isRequired,
+// };
 
 export default Login;
